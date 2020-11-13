@@ -1,6 +1,6 @@
 // jquery
 import $ from "jquery";
-window.$ =$;
+window.$ = $;
 
-// slick
-import 'slick-carousel';
+// snowstorm
+// import '../_library/snowstorm';
