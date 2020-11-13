@@ -1,13 +1,13 @@
 $(document).ready(function(){
-	// OPTION
-	app = {
-		tmpText             : "<div class='number'><div class='listNumber'><span>T</span><span>V</span><span>S</span><span>T</span><span>V</span><span>S</span><span>T</span><span>V</span><span>S</span><span>T</span></div></div>",
-		tmpNumber           : "<div class='number'><div class='listNumber'><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>",
-		start               : '1',
-		end                 : '30000',
-		array_offset_number : [0,-100,-200,-300,-400,-500,-600,-700,-800,-900],
-		array_number        : [],
-		stt                 : 0,
+  // OPTION	
+  app = {
+		tmpText: "<div class='number'><div class='listNumber'><span>T</span><span>V</span><span>S</span><span>H</span><span>Q</span><span>B</span><span>U</span><span>A</span><span>K</span><span>M</span></div></div>",
+		tmpNumber: "<div class='number'><div class='listNumber'><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>",
+		start: '1',
+		end: '30000',
+		array_offset_number: [0,-200,-400,-600,-800,-1000,-1200,-1400,-1600,-1800],
+		array_number: [],
+		stt: 0,
 		init : function(){
 			$("#setupbox").addClass("hidebox");
 			for(i=this.start; i<=this.end; i++){
@@ -28,12 +28,11 @@ $(document).ready(function(){
 		},
 		getRandomNumber : function(){
 			indexRandom =  parseInt(Math.random() * (this.array_number.length - 0) + 0);
-      returnRandom = this.array_number[indexRandom];
-      console.log(returnRandom);
+			returnRandom = this.array_number[indexRandom];
 			return returnRandom;
 		},
-		getPadNumber : function(num, size){
-		    var s = num+"";
+		getPadNumber : function(num, size) {
+		    var s = num + "";
 		    while (s.length < size) s = "0" + s;
 		    return s;
 		},
@@ -42,24 +41,28 @@ $(document).ready(function(){
 			numberRandom = _.getRandomNumber();
 			this.removeNumber(numberRandom);
 			numberRandom = this.getPadNumber(numberRandom,this.end.length);
-			$(".boxNumber").removeClass("run").addClass("endrun");
-			$(".boxNumber .number").each(function(i,e){
-				pos = _.array_offset_number[numberRandom[i]] + parseInt(Math.random() * (-300 - 250) + -250);
-				$(this).find(".listNumber").css({
-					"transform" : "matrix(1, 0, 0, 1, 0, "+pos+")",
-				});
-			});
-			setTimeout(function(){
-				$(".boxNumber .number").each(function(i,e){
-					pos = _.array_offset_number[numberRandom[i]];
-					$(this).find(".listNumber").css({
-						"transform" : "matrix(1, 0, 0, 1, 0, "+pos+")",
+			$(".boxNumber .number").each(function(index, element){
+				const item = $(element);
+				const pos_start = _.array_offset_number[numberRandom[index]] + parseInt(Math.random() * (-1000) + -800); 
+				const pos_end = _.array_offset_number[numberRandom[index]];
+				const delay = index * 500;
+
+				setTimeout(() => {
+					item.removeClass("run").addClass("endrun");
+					item.find(".listNumber").css({
+						"transform" : `matrix(1, 0, 0, 1, 0, ${pos_start})`,
 					});
-				});
-				$(".boxNumber>.number>.listNumber:first").one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend",function(){
-            _.addNumToList(numberRandom);
-        });
-			},30);
+					setTimeout(() => {
+						item.find(".listNumber").css({
+							"transition": `all 2.8s ease-out`,
+							"transform" : `matrix(1, 0, 0, 1, 0, ${pos_end})`,
+						});
+					}, 30);
+				}, delay);
+			});
+			$(".boxNumber>.number>.listNumber:first").one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(){
+				_.addNumToList(numberRandom);
+			});
 		},
 		addNumToList : function(num){
 			this.stt++;
@@ -67,15 +70,15 @@ $(document).ready(function(){
 			$(".listResult table").append("<tr><td>"+this.stt+"</td><td>"+num+"</td><td>"+d+"</td></tr>");
 		}
 	};
+
 	// EVENT
 	app.init();
 	$(document).on("keyup",function(e){
 		if(e.keyCode==13){
-			if(!$(".boxNumber").hasClass("run")){
-				$(".boxNumber").addClass("run");
+			if(!$(".boxNumber").find(`.number`).hasClass("run")){
+				$(".boxNumber").find(`.number`).addClass("run");
 			}
 			else{
-				$(".boxNumber").removeClass("run");
 				app.getPositionNumber();
 				$("#z145z_hidden").val('');
 			}
