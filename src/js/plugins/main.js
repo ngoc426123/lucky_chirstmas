@@ -43,9 +43,9 @@ $(document).ready(function(){
 			numberRandom = this.getPadNumber(numberRandom,this.end.length);
 			$(".boxNumber .number").each(function(index, element){
 				const item = $(element);
-				const pos_start = _.array_offset_number[numberRandom[index]] + parseInt(Math.random() * (-1000) + -800); 
+				const pos_start = _.array_offset_number[numberRandom[index]] - 600; 
 				const pos_end = _.array_offset_number[numberRandom[index]];
-				const delay = index * 500;
+				const delay = (_.end.length - index)  * 200;
 
 				setTimeout(() => {
 					item.removeClass("run").addClass("endrun");
@@ -54,7 +54,7 @@ $(document).ready(function(){
 					});
 					setTimeout(() => {
 						item.find(".listNumber").css({
-							"transition": `all 2.8s ease-out`,
+							"transition": `all 2.2s ease-out`,
 							"transform" : `matrix(1, 0, 0, 1, 0, ${pos_end})`,
 						});
 					}, 30);
