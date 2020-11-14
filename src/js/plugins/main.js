@@ -1,11 +1,11 @@
 $(document).ready(function(){
-  // OPTION	
+  // OPTION
   app = {
 		tmpText: "<div class='number'><div class='listNumber'><span>T</span><span>V</span><span>S</span><span>H</span><span>Q</span><span>B</span><span>U</span><span>A</span><span>K</span><span>M</span></div></div>",
 		tmpNumber: "<div class='number'><div class='listNumber'><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>",
 		start: '1',
-		end: '30000',
-		array_offset_number: [0,-200,-400,-600,-800,-1000,-1200,-1400,-1600,-1800],
+		end: '19999',
+		array_offset_number: [0,-244,-488,-732,-976,-1220,-1464,-1708,-1952,-2195],
 		array_number: [],
 		stt: 0,
 		init : function(){
@@ -39,13 +39,14 @@ $(document).ready(function(){
 		getPositionNumber : function(){
 			_ = this;
 			numberRandom = _.getRandomNumber();
-			this.removeNumber(numberRandom);
+			_.removeNumber(numberRandom);
 			numberRandom = this.getPadNumber(numberRandom,this.end.length);
+			_.addNumToList(numberRandom);
 			$(".boxNumber .number").each(function(index, element){
 				const item = $(element);
-				const pos_start = _.array_offset_number[numberRandom[index]] - 600; 
+				const pos_start = _.array_offset_number[numberRandom[index]] - 500; 
 				const pos_end = _.array_offset_number[numberRandom[index]];
-				const delay = (_.end.length - index)  * 200;
+				const delay = (_.end.length - 1 - index) * 400;
 
 				setTimeout(() => {
 					item.removeClass("run").addClass("endrun");
@@ -54,15 +55,13 @@ $(document).ready(function(){
 					});
 					setTimeout(() => {
 						item.find(".listNumber").css({
-							"transition": `all 2.2s ease-out`,
+							"transition": `all 1.8s ease-out`,
 							"transform" : `matrix(1, 0, 0, 1, 0, ${pos_end})`,
 						});
 					}, 30);
 				}, delay);
 			});
-			$(".boxNumber>.number>.listNumber:first").one("webkitTransitionEnd otransitionend oTransitionEnd msTransitionEnd transitionend", function(){
-				_.addNumToList(numberRandom);
-			});
+			
 		},
 		addNumToList : function(num){
 			this.stt++;

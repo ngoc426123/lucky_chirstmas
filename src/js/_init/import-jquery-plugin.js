@@ -3,4 +3,4 @@ import $ from "jquery";
 window.$ = $;
 
 // snowstorm
-// import '../_library/snowstorm';
+import '../_library/snowstorm';

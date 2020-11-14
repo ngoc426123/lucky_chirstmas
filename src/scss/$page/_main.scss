@@ -12,70 +12,22 @@
 #app{
   width:100vw;
   height: 100vh;
-  background: -moz-radial-gradient(center, ellipse cover, rgba(0,130,0,1) 0%, rgba(1,68,1,1) 100%);
-  background: -webkit-radial-gradient(center, ellipse cover, rgba(0,130,0,1) 0%,rgba(1,68,1,1) 100%);
-  background: radial-gradient(ellipse at center, rgba(0,130,0,1) 0%,rgba(1,68,1,1) 100%);
+  background: url(../images/bg.jpg) no-repeat center bottom;
   background-size: cover;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 50px;
-    background: url(../images/nen-chuong.svg) repeat-x;
-    z-index: 1;
-  }
-
-  &::after {
-    content: "";
-    position: absolute;
-    top: -15px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 376px;
-    height: 146px;
-    background: url(../images/chuong.svg) repeat-x;
-    background-size: contain;
-    z-index: 2;
-  }
-
-  .coner{
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    z-index: 2;
-
-    img{
-      max-width: 300px;
-    }
-  }
-
-  .coner2{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 2;
-
-    img{
-      max-width: 200px;
-    }
-  }
 }
 
 .boxTitle{
   position: absolute;
-  top: 150px;
+  top: 50px;
   left: 50%;
   transform: translate(-50%,0%);
   transition: all 0.3s linear;
 
   .img{
     text-align: center;
-    margin-bottom: 15px;
+    margin-bottom: 10px;
 
     img{
       max-width: 150px;
@@ -86,9 +38,10 @@
     font-size: 32px;
     line-height: 42px;
     text-transform: uppercase;
-    color: #FFFFFF;
+    color: #0278b3;
+    text-shadow: 4px 4px 2px #b3cfd6;
     text-align: center;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     white-space: nowrap;
     font-weight: bold;
   }
@@ -97,10 +50,10 @@
     font-size: 60px;
     line-height: 70px;
     font-weight: bold;
-    color: #FFDF85;
+    color: #0278b3;
+    text-shadow: 4px 4px 2px #b3cfd6;
     text-align: center;
     white-space: nowrap;
-    text-shadow: 4px 4px 2px rgba(0,0,0,0.25);
     font-family: 'Bevan';
   }
 }
@@ -109,12 +62,12 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-10%);
+  transform: translate(-50%,-50%);
   padding: 17px;
-  border: 3px solid #ad992f;
-  background: -moz-linear-gradient(left, rgba(255,223,133,1) 0%, rgba(220,198,73,1) 100%);
-  background: -webkit-linear-gradient(left, rgba(255,223,133,1) 0%,rgba(220,198,73,1) 100%);
-  background: linear-gradient(to right, rgba(255,223,133,1) 0%,rgba(220,198,73,1) 100%);
+  border: 3px solid #054c79;
+  background: -moz-linear-gradient(left, #398cc1 0%, #08598c 100%);
+  background: -webkit-linear-gradient(left, #398cc1 0%,#08598c 100%);
+  background: linear-gradient(to right, #398cc1 0%,#08598c 100%);
   border-radius: 15px;
   transition: all 0.3s linear;
   display: flex;
@@ -128,20 +81,20 @@
     background-color: #fff;
     position: absolute;
     bottom: 20px;
-    left: 170px;
-    box-shadow: 3px 3px 5px rgba(0,0,0,.95);
+    left: 200px;
+    box-shadow: 3px 3px 5px rgba(0,0,0,.75);
     transition: all 0.3s linear;
   }
 
   .number{
-    width: 140px;
-    height: 200px;
+    width: 170px;
+    height: 250px;
     border: solid 3px rgba(0, 0, 0, 0.25);
     border-right: none;
     overflow: hidden;
-    background: -moz-linear-gradient(top, rgba(188,179,0,1) 0%, rgba(219,200,30,1) 100%);
-    background: linear-gradient(to bottom, rgb(254, 222, 132) 0%,rgb(221, 198, 74) 100%);
-    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.95);
+    background: -moz-linear-gradient(top, #398cc1 0%, #08598c 100%);
+    background: linear-gradient(to bottom, #398cc1 0%,#08598c 100%);
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.75);
     transition: filter 1.5s linear;
 
     &:first-child{
@@ -153,7 +106,7 @@
     &:last-child{
       border-top-right-radius: 10px;
       border-bottom-right-radius: 10px;
-      border-right: solid 5px rgba(0, 0, 0, 0.15);
+      border-right: solid 3px rgba(0, 0, 0, 0.15);
     }
 
     &:nth-child(2){
@@ -184,8 +137,8 @@
 }
 
 .listNumber{
-  font-size: 149px;
-  line-height: 200px;
+  font-size: 170px;
+  line-height: 250px;
   text-align: center;
   font-weight: bold;
   color:#ffffff;
@@ -197,8 +150,8 @@
 
   span {
     display: block;
-    width: 135px;
-    height: 200px;
+    width: 164px;
+    height: 244px;
     -webkit-transition: all 0.3s linear;
     -o-transition: all 0.3s linear;
     transition: all 0.3s linear;
