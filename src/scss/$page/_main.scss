@@ -91,11 +91,12 @@
     height: 250px;
     border: solid 3px rgba(0, 0, 0, 0.25);
     border-right: none;
-    overflow: hidden;
     background: -moz-linear-gradient(top, #398cc1 0%, #08598c 100%);
     background: linear-gradient(to bottom, #398cc1 0%,#08598c 100%);
     text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.75);
-    transition: filter 1.5s linear;
+    transition: filter 2s linear;
+    position: relative;
+    overflow: hidden;
 
     &:first-child{
       margin-right: 50px;
@@ -120,23 +121,26 @@
       &::before {
         filter: blur(5px);
       }
-  
-      &:nth-child(odd) .listNumber{
-        animation-name: runrunrun;
-      }
 
-      &:nth-child(even) .listNumber{
-        animation-name: runrunrun;
+      .rotateNumber{
+        animation: runrunrun 1s linear infinite;
       }
-  
-      .listNumber{
-        animation-duration: 1s;
-      }
+    }
+
+    .rotateNumber {
+      width: 0;
+      height: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform-style: preserve-3d;
     }
   }
 }
 
 .listNumber{
+  width: 0;
+  height: 0;
   font-size: 170px;
   line-height: 250px;
   text-align: center;
@@ -146,40 +150,80 @@
   animation-duration: 2s;
   animation-timing-function: linear;
   animation-iteration-count: infinite;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotateY(-90deg);
   transition: all 0.2s linear;
+  transform-style: preserve-3d;
 
-  span {
-    display: block;
-    width: 164px;
-    height: 244px;
-    -webkit-transition: all 0.3s linear;
-    -o-transition: all 0.3s linear;
-    transition: all 0.3s linear;
+  > span {
+    width: 0px;
+    height: 0px;
+    position: absolute;
+    transform-style: preserve-3d;
+    
+    &:nth-child(1) {
+      transform: rotate(0deg) translate(390px);
+    }
+
+    &:nth-child(2) {
+      transform: rotate(36deg) translate(390px);
+    }
+
+    &:nth-child(3) {
+      transform: rotate(72deg) translate(390px);
+    }
+
+    &:nth-child(4) {
+      transform: rotate(108deg) translate(390px);
+    }
+
+    &:nth-child(5) {
+      transform: rotate(144deg) translate(390px);
+    }
+
+    &:nth-child(6) {
+      transform: rotate(180deg) translate(390px);
+    }
+
+    &:nth-child(7) {
+      transform: rotate(216deg) translate(390px);
+    }
+
+    &:nth-child(8) {
+      transform: rotate(252deg) translate(390px);
+    }
+
+    &:nth-child(9) {
+      transform: rotate(288deg) translate(390px);
+    }
+
+    &:nth-child(10) {
+      transform: rotate(324deg) translate(390px);
+    }
+
+    > span {
+      display: block;
+      width: 164px;
+      height: 244px;
+      background: -moz-linear-gradient(top, #398cc1 0%, #08598c 100%);
+      background: linear-gradient(to bottom, #398cc1 0%,#08598c 100%);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotateY(90deg);
+    }
   }
 }
 
 @keyframes runrunrun{
-  0%{
-    transform: translateY(0%);
+  from{
+    transform: rotateX(0deg);
   }
-  50%{
-    transform: translateY(-100%);
+  to{
+    transform: rotateX(360deg);
   }
-  100%{
-    transform: translateY(0%);
-  }
-}
-
-@keyframes runrunrun_revert{
-	0%{
-		transform: translateY(-100%);
-	}
-	50%{
-		transform: translateY(0%);
-	}
-	100%{
-		transform: translateY(-100%);
-	}
 }
 
 .listResult{

@@ -1,11 +1,41 @@
 $(document).ready(function(){
   // OPTION
   app = {
-		tmpText: "<div class='number'><div class='listNumber'><span>T</span><span>V</span><span>S</span><span>H</span><span>Q</span><span>B</span><span>U</span><span>A</span><span>K</span><span>M</span></div></div>",
-		tmpNumber: "<div class='number'><div class='listNumber'><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span></div></div>",
+		tmpText: `<div class='number'>
+								<div class='rotateNumber'>
+									<div class='listNumber'>
+										<span><span>T</span></span>
+										<span><span>V</span></span>
+										<span><span>S</span></span>
+										<span><span>H</span></span>
+										<span><span>Q</span></span>
+										<span><span>B</span></span>
+										<span><span>U</span></span>
+										<span><span>A</span></span>
+										<span><span>K</span></span>
+										<span><span>M</span></span>
+									</div>
+									</div>
+							</div>`,
+		tmpNumber: `<div class='number'>
+									<div class='rotateNumber'>
+										<div class='listNumber'>
+											<span><span>0</span></span>
+											<span><span>1</span></span>
+											<span><span>2</span></span>
+											<span><span>3</span></span>
+											<span><span>4</span></span>
+											<span><span>5</span></span>
+											<span><span>6</span></span>
+											<span><span>7</span></span>
+											<span><span>8</span></span>
+											<span><span>9</span></span>
+										</div>
+									</div>
+								</div>`,
 		start: '1',
-		end: '19999',
-		array_offset_number: [0,-244,-488,-732,-976,-1220,-1464,-1708,-1952,-2195],
+		end: '99999',
+		array_offset_number: [0,36,72,108,144,180,216,252,288,324],
 		array_number: [],
 		stt: 0,
 		init : function(){
@@ -15,7 +45,7 @@ $(document).ready(function(){
 			}
 			countBoxNum = this.end.length;
 			for (var i = countBoxNum - 1; i >= 0; i--) {
-        $(".boxNumber").append((i === countBoxNum - 1) ? this.tmpText : this.tmpNumber);
+				$(".boxNumber").append((i === countBoxNum - 1) ? this.tmpText : this.tmpNumber);
 			}
 		},
 		removeNumber : function(number){
@@ -44,24 +74,23 @@ $(document).ready(function(){
 			_.addNumToList(numberRandom);
 			$(".boxNumber .number").each(function(index, element){
 				const item = $(element);
-				const pos_start = _.array_offset_number[numberRandom[index]] - 500; 
+				const pos_start = _.array_offset_number[numberRandom[index]] - 400; 
 				const pos_end = _.array_offset_number[numberRandom[index]];
-				const delay = (_.end.length - 1 - index) * 400;
+				const delay = (_.end.length - 1 - index) * 700;
 
 				setTimeout(() => {
 					item.removeClass("run").addClass("endrun");
-					item.find(".listNumber").css({
-						"transform" : `matrix(1, 0, 0, 1, 0, ${pos_start})`,
+					item.find(".rotateNumber").css({
+						"transform" : `rotateX(${pos_start}deg)`,
 					});
 					setTimeout(() => {
-						item.find(".listNumber").css({
+						item.find(".rotateNumber").css({
 							"transition": `all 1.8s ease-out`,
-							"transform" : `matrix(1, 0, 0, 1, 0, ${pos_end})`,
+							"transform" : `rotateX(${pos_end}deg)`,
 						});
 					}, 30);
 				}, delay);
 			});
-			
 		},
 		addNumToList : function(num){
 			this.stt++;
