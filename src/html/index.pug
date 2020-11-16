@@ -1,14 +1,14 @@
 extends _layout/_layout
 
 block main-content
-  #app
+  #app(data-app)
     .boxTitle
       .img
         img(src='images/santa.png' alt='')
       .t1 Tu Viện Vinh Sơn
       .t2 Đêm Hội Giáng Sinh 2020
-    .boxNumber
-    .listResult
+    .boxNumber(data-box-number)
+    .listResult(data-list-result)
       .title Kết quả quay số
       .content
         table
