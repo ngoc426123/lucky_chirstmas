@@ -20,7 +20,7 @@
 
 .boxTitle{
   position: absolute;
-  top: 50px;
+  top: 30px;
   left: 50%;
   transform: translate(-50%,0%);
   transition: all 0.3s linear;
@@ -62,7 +62,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-30%);
   padding: 17px;
   border: 3px solid #054c79;
   background: -moz-linear-gradient(left, #398cc1 0%, #08598c 100%);
@@ -72,6 +72,17 @@
   transition: all 0.3s linear;
   display: flex;
   align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border-radius: 100%;
+    background-color: #ffffff;
+    bottom: 20px;
+    left: 202px;
+  }
 
   .number{
     width: 170px;
@@ -86,6 +97,11 @@
     overflow: hidden;
 
     &:first-child{
+      margin-right: 50px;
+      border-radius: 10px;
+    }
+
+    &:nth-child(2) {
       border-top-left-radius: 10px;
       border-bottom-left-radius: 10px;
     }

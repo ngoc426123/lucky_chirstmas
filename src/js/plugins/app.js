@@ -1,12 +1,28 @@
 @Plugin({
   options: {
     start: 1,
-    end: 99999,
+    end: 25003,
     array_offset_number: [0,36,72,108,144,180,216,252,288,324],
     array_number: [],
     
     dataBoxNumber: `[data-box-number]`,
     dataListResult: `[data-list-result]`,
+    tmpText: `<div class='number'>
+									<div class='rotateNumber'>
+										<div class='listNumber'>
+											<span><span>T</span></span>
+											<span><span>V</span></span>
+											<span><span>S</span></span>
+											<span><span>H</span></span>
+											<span><span>N</span></span>
+											<span><span>D</span></span>
+											<span><span>I</span></span>
+											<span><span>V</span></span>
+											<span><span>J</span></span>
+											<span><span>L</span></span>
+										</div>
+									</div>
+                </div>`,
 		tmpNumber: `<div class='number'>
 									<div class='rotateNumber'>
 										<div class='listNumber'>
@@ -75,7 +91,8 @@ export default class App {
     const {
       start,
       end,
-      tmpNumber
+      tmpNumber,
+      tmpText
     } = this.options;
     const countBoxNum = end.toString().length;
 
@@ -83,8 +100,8 @@ export default class App {
       this.props.arrayNumber.push(i);
     }
 
-    for (let i = countBoxNum - 1; i >= 0; i--) {
-      this.$boxNumber.append(tmpNumber);
+    for (let i = 1; i <= countBoxNum; i++) {
+      this.$boxNumber.append(i === 1 ? tmpText : tmpNumber);
     }
   }
 
@@ -106,7 +123,7 @@ export default class App {
   }
 
   getPadNumber (number, sizer) {
-    var retNumber = number + "";
+    var retNumber = number.toString();
     while (retNumber.length < sizer) retNumber = "0" + retNumber;
     return retNumber;
   }
@@ -125,17 +142,17 @@ export default class App {
     } = this.options;
 
     const numberRandom = this.getRandomNumber();
-    const numberRandomPad = this.getPadNumber(numberRandom, end.length);
+    const numberRandomPad = this.getPadNumber(numberRandom, end.toString().length);
 
     this.removeNumber(numberRandom);
     this.addNumToList(numberRandomPad);
 
     this.$boxNumber.find(`.number`).each((index, element) => {
       const $element = $(element);
-      const indexRandomNumber = numberRandom.toString()[index];
+      const indexRandomNumber = numberRandomPad.toString()[index];
       const posStart = this.props.arrayOffset[indexRandomNumber] - 400; 
       const posEnd = this.props.arrayOffset[indexRandomNumber];
-      const delay = (end.toString().length - 1 - index) * 700;
+      const delay = (end.toString().length - index) * 700;
 
       setTimeout(() => {
         $element.removeClass(clsRun);
